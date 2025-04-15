@@ -16,6 +16,14 @@ class StudentService {
       throw new CustomError(error.message, error.status || 500)
     }
   }
+  async getStudents() {
+    try {
+      const students = await this.studentModel.find()
+      return students
+    } catch (error) {
+      throw new CustomError(error.message, error.status || 500)
+    }
+  }
 }
 
 export default StudentService

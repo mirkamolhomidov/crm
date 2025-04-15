@@ -15,6 +15,18 @@ class StudentController {
       next(error)
     }
   }
+  async getStudentsController() {
+    try {
+      const students = await this.service.getStudents()
+      res.status(200).json({
+        success: 'true',
+        count: students.length,
+        students,
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
 }
 
 export default StudentController

@@ -15,7 +15,7 @@ staffRouter.post(
 staffRouter.get(
   '/',
   auth,
-  authorize,
+  authorize('admin'),
   controller.getStaffsController.bind(controller)
 )
 

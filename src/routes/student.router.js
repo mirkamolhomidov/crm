@@ -1,9 +1,17 @@
 import { Router } from 'express'
 import StudentController from '../controllers/student.controller.js'
+import auth from '../middlewares/auth.middleware.js'
+import authorize from '../middlewares/role.middleware.js'
 
 const controller = new StudentController()
 const studentRouter = Router()
 
-studentRouter.post('/', controller.createStudentController.bind(controller))
+studentRouter.post(
+  '/',
+  auth,
+  authorize('admin'),
+  controller.createStudentController.bind(controller)
+)
+studentRouter.get('/', controller.getStudentsController.bind(controller))
 
 export default studentRouter
