@@ -17,7 +17,7 @@ class StaffService {
       const staff = await this.staffModel.create(data)
       return staff
     } catch (error) {
-      throw new CustomError(error.message, error.status || 500)
+      throw new CustomError(error.message, error.status)
     }
   }
   async getStaffs() {
@@ -25,10 +25,7 @@ class StaffService {
       const staffs = await this.staffModel.find()
       return staffs
     } catch (error) {
-      throw new CustomError(
-        error.message || 'INTERNAL SERVER ERROR',
-        error.status || 500
-      )
+      throw new CustomError(error.message, error.status)
     }
   }
 }

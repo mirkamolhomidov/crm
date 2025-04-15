@@ -1,4 +1,4 @@
-import StaffService from '../services/staffs.service.js'
+import StaffService from '../services/staff.service.js'
 
 class StaffController {
   constructor() {

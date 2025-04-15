@@ -13,7 +13,7 @@ class StudentService {
       const student = await this.studentModel.create(data)
       return student
     } catch (error) {
-      throw new CustomError(error.message, error.status || 500)
+      throw new CustomError(error.message, error.status)
     }
   }
   async getStudents() {
@@ -21,7 +21,7 @@ class StudentService {
       const students = await this.studentModel.find()
       return students
     } catch (error) {
-      throw new CustomError(error.message, error.status || 500)
+      throw new CustomError(error.message, error.status)
     }
   }
 }
