@@ -5,6 +5,7 @@ const teacher_infoSchema = new Schema(
     staff_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Staff',
+      unique: true,
       required: true,
     },
     specialization: {
@@ -23,5 +24,7 @@ const teacher_infoSchema = new Schema(
   { versionKey: false }
 )
 
-const TeacherInfoModel = mongoose.model('TeacherInfo', teacher_infoSchema)
-export default TeacherInfoModel
+export const TeacherInfoModel = mongoose.model(
+  'TeacherInfo',
+  teacher_infoSchema
+)

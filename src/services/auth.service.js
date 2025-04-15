@@ -6,13 +6,13 @@ import JwtService from './jwt.service.js'
 
 class AuthService {
   constructor() {
-    this.staffModel = StaffsModel
-    this.studentModel = StudentsModel
+    this.staff = StaffsModel
+    this.student = StudentsModel
     this.jwtService = new JwtService()
   }
   async staffLogin(data) {
     try {
-      const staff = await this.staffModel.findOne({ username: data.username })
+      const staff = await this.staff.findOne({ username: data.username })
       if (!staff) {
         throw new CustomError('Email or password invalid', 400)
       }
@@ -28,7 +28,7 @@ class AuthService {
   }
   async studentLogin({ username, password }) {
     try {
-      const student = await this.studentModel.findOne({ username: username })
+      const student = await this.student.findOne({ username: username })
       const studentPassword = await bcrypt.compare(data.password, password)
       if (!student || !studentPassword) {
         throw new CustomError('Email or password invalid', 401)

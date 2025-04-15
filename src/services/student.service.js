@@ -4,13 +4,13 @@ import CustomError from '../utils/customerror.js'
 
 class StudentService {
   constructor() {
-    this.studentModel = StudentsModel
+    this.student = StudentsModel
   }
   async createStudent(data) {
     try {
       const hashedPass = await bcrypt.hash(data.password, 12)
       data.password = hashedPass
-      const student = await this.studentModel.create(data)
+      const student = await this.student.create(data)
       return student
     } catch (error) {
       throw new CustomError(error.message, error.status)
@@ -18,7 +18,7 @@ class StudentService {
   }
   async getStudents() {
     try {
-      const students = await this.studentModel.find()
+      const students = await this.student.find()
       return students
     } catch (error) {
       throw new CustomError(error.message, error.status)

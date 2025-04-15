@@ -12,6 +12,11 @@ studentRouter.post(
   authorize('admin'),
   controller.createStudentController.bind(controller)
 )
-studentRouter.get('/', controller.getStudentsController.bind(controller))
+studentRouter.get(
+  '/',
+  auth,
+  authorize('admin'),
+  controller.getStudentsController.bind(controller)
+)
 
 export default studentRouter

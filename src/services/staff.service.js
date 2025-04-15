@@ -4,17 +4,17 @@ import CustomError from '../utils/customerror.js'
 
 class StaffService {
   constructor() {
-    this.staffModel = StaffsModel
+    this.staff = StaffsModel
   }
   async createStaff(data) {
     try {
-      const checkStaff = await this.staffModel.findOne({
+      const checkStaff = await this.staff.findOne({
         username: data.username,
       })
       if (checkStaff) throw new CustomError('username already exists', 400)
       const hashedPass = await bcrypt.hash(data.password, 12)
       data.password = hashedPass
-      const staff = await this.staffModel.create(data)
+      const staff = await this.staff.create(data)
       return staff
     } catch (error) {
       throw new CustomError(error.message, error.status)
@@ -22,7 +22,7 @@ class StaffService {
   }
   async getStaffs() {
     try {
-      const staffs = await this.staffModel.find()
+      const staffs = await this.staff.find()
       return staffs
     } catch (error) {
       throw new CustomError(error.message, error.status)
