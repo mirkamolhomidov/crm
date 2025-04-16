@@ -5,7 +5,6 @@ const teacher_infoSchema = new Schema(
     staff_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Staff',
-      unique: true,
       required: true,
     },
     specialization: {

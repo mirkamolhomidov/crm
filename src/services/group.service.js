@@ -8,8 +8,6 @@ class GroupService {
   async createGroup(data) {
     try {
       const group = await this.group.create(data)
-      console.log(group.teacher_id)
-
       await group.populate([
         { path: 'course_id', select: 'name' },
         {
@@ -22,7 +20,6 @@ class GroupService {
           },
         },
       ])
-
       return group
     } catch (error) {
       throw new CustomError(error.message, error.status)

@@ -9,7 +9,7 @@ class TeacherService {
   }
   async createTeacherInfo(data) {
     try {
-      const staff = await this.staff.find({ _id: data.staff_id })
+      const staff = await this.staff.findOne({ _id: data.staff_id })
       if (staff.role !== 'teacher') {
         throw new CustomError('staff_id owner is not a teacher', 400)
       }
