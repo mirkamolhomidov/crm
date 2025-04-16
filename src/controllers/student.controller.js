@@ -15,7 +15,7 @@ class StudentController {
       next(error)
     }
   }
-  async getStudentsController() {
+  async getStudentsController(req, res, next) {
     try {
       const students = await this.service.getStudents()
       res.status(200).json({
@@ -23,6 +23,14 @@ class StudentController {
         count: students.length,
         students,
       })
+    } catch (error) {
+      next(error)
+    }
+  }
+  async createStudentGroupController(req, res, next) {
+    try {
+      const studentGroup = await this.service.createStudentGroup(req.body)
+      return studentGroup
     } catch (error) {
       next(error)
     }

@@ -23,9 +23,6 @@ const groupsSchema = new Schema(
     end_date: {
       type: Date,
     },
-    schedule: {
-      type: String,
-    },
     max_students: {
       type: Number,
       default: 20,
