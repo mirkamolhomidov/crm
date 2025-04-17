@@ -27,6 +27,17 @@ class GroupController {
       next(error)
     }
   }
+  async updateStatusController(req, res, next) {
+    try {
+      const group = await this.service.updateStatus(req.body)
+      res.status(200).json({
+        success: 'true',
+        group,
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
 }
 
 export default GroupController

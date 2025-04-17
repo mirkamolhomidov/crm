@@ -27,14 +27,6 @@ class StudentController {
       next(error)
     }
   }
-  async createStudentGroupController(req, res, next) {
-    try {
-      const studentGroup = await this.service.createStudentGroup(req.body)
-      return studentGroup
-    } catch (error) {
-      next(error)
-    }
-  }
 }
 
 export default StudentController

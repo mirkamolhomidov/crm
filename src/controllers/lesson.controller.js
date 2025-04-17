@@ -15,18 +15,20 @@ class LessonController {
       next(error)
     }
   }
-  // async getStudentsController() {
-  //   try {
-  //     const students = await this.service.getStudents()
-  //     res.status(200).json({
-  //       success: 'true',
-  //       count: students.length,
-  //       students,
-  //     })
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
+  async getLessonController(req, res, next) {
+    try {
+      const lessons = await this.service.getGroupLessons(
+        req.params.id,
+        req.query
+      )
+      res.status(200).json({
+        success: 'true',
+        lessons,
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
 }
 
 export default LessonController

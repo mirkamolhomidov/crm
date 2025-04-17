@@ -18,11 +18,5 @@ studentRouter.get(
   authorize('admin'),
   controller.getStudentsController.bind(controller)
 )
-studentRouter.post(
-  '/group',
-  auth,
-  authorize('admin'),
-  controller.createStudentGroupController.bind(controller)
-)
 
 export default studentRouter

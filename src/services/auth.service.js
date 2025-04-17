@@ -29,9 +29,10 @@ class AuthService {
   async studentLogin({ username, password }) {
     try {
       const student = await this.student.findOne({ username: username })
-      const studentPassword = await bcrypt.compare(data.password, password)
+
+      const studentPassword = await bcrypt.compare(password, student.password)
       if (!student || !studentPassword) {
-        throw new CustomError('Email or password invalid', 401)
+        throw new CustomError('Email or password invalid', 400)
       }
       const token = this.jwtService.generateToken(student._id, student.role)
       return { token, student }
