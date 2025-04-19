@@ -54,6 +54,7 @@ class GroupService {
       throw new CustomError(error.message, error.status)
     }
   }
+
   async updateStatus({ group_id, status }) {
     const group = await this.group.findOne({ _id: group_id })
     if (!group) throw new CustomError('Invalid group id', 401)
