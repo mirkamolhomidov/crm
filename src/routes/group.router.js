@@ -8,6 +8,12 @@ const controller = new GroupController()
 const groupRouter = Router()
 
 groupRouter.post(
+  '/schedule',
+  auth,
+  authorize('admin'),
+  controller.createGroupScheduleController.bind(controller)
+)
+groupRouter.post(
   '/',
   auth,
   authorize('admin'),

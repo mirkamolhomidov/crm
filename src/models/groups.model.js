@@ -20,6 +20,11 @@ const groupsSchema = new Schema(
       type: Date,
       required: true,
     },
+    schedule_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Schedule',
+      required: true,
+    },
     end_date: {
       type: Date,
     },

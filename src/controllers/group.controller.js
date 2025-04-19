@@ -4,6 +4,17 @@ class GroupController {
   constructor() {
     this.service = new GroupService()
   }
+  async createGroupScheduleController(req, res, next) {
+    try {
+      const schedule = await this.service.createGroupSchedule(req.body)
+      res.status(201).json({
+        success: 'true',
+        schedule,
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
   async createGroupController(req, res, next) {
     try {
       const group = await this.service.createGroup(req.body)

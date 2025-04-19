@@ -1,4 +1,5 @@
 import { GroupsModel } from '../models/groups.model.js'
+import { ScheduleModel } from '../models/schedule.model.js'
 import { StudentGroup } from '../models/student_groups.model.js'
 import CustomError from '../utils/customerror.js'
 
@@ -6,6 +7,15 @@ class GroupService {
   constructor() {
     this.group = GroupsModel
     this.studentGroup = StudentGroup
+    this.schedule = ScheduleModel
+  }
+  async createGroupSchedule(data) {
+    try {
+      const schedule = await this.schedule.create(data)
+      return schedule
+    } catch (error) {
+      throw new CustomError(error.message, error.status)
+    }
   }
   async createGroup(data) {
     try {
@@ -21,6 +31,7 @@ class GroupService {
             select: 'first_name last_name',
           },
         },
+        { path: 'schedule_id', select: 'day start_time end_time room_number' },
       ])
       return group
     } catch (error) {
@@ -36,6 +47,7 @@ class GroupService {
           select: 'staff_id',
           populate: { path: 'staff_id', select: 'first_name last_name' },
         },
+        { path: 'schedule_id', select: 'day start_time end_time room_number' },
       ])
       return groups
     } catch (error) {

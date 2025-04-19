@@ -2,11 +2,6 @@ import mongoose, { Schema } from 'mongoose'
 
 const scheduleSchema = new Schema(
   {
-    group_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Group',
-      required: true,
-    },
     day: {
       type: [String],
       default: 'Monday',
@@ -29,7 +24,7 @@ const scheduleSchema = new Schema(
       required: true,
     },
     room_number: {
-      type: String,
+      type: Number,
     },
   },
   { timestamps: true, versionKey: false }
