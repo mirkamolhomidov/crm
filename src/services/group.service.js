@@ -67,5 +67,4 @@ class GroupService {
     return group
   }
 }
-
 export default GroupService
